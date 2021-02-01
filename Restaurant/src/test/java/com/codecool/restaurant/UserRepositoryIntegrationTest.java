@@ -1,7 +1,7 @@
 package com.codecool.restaurant;
 
-import com.codecool.restaurant.User.UserApp;
-import com.codecool.restaurant.User.UserRepository;
+import com.codecool.restaurant.user.User;
+import com.codecool.restaurant.user.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +27,13 @@ public class UserRepositoryIntegrationTest {
     @Test
     public void whenFindByUsername_thenReturnUserApp(){
         //given
-        UserApp ion = new UserApp("Ion", "Ioana",
+        User ion = new User("Ion", "Ioana",
                 "ion", "admin@gmail.com",
                 "", "", "parola");
         entityManager.persist(ion);
         entityManager.flush();
         //when
-        Optional<UserApp> found = userRepository.findByUserName(ion.getUserName());
+        Optional<User> found = userRepository.findByUserName(ion.getUserName());
         //then
         assertThat(found.get().getUserName()).isEqualTo(ion.getUserName());
     }

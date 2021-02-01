@@ -1,16 +1,12 @@
 package com.codecool.restaurant;
 
-import com.codecool.restaurant.Meal.MealsToCartService;
-import com.codecool.restaurant.Payment.PaymentDetailsModel;
-import com.codecool.restaurant.Payment.PaymentService;
-import com.codecool.restaurant.ShoppingCart.ShoppingCart;
-import com.codecool.restaurant.ShoppingCart.ShoppingCartException;
-import com.codecool.restaurant.ShoppingCart.ShoppingCartService;
-import com.codecool.restaurant.User.UserApp;
-import com.codecool.restaurant.User.UserService;
+import com.codecool.restaurant.meal.MealsToCartService;
+import com.codecool.restaurant.payment.PaymentDetailsModel;
+import com.codecool.restaurant.payment.PaymentService;
+import com.codecool.restaurant.shoppingCart.ShoppingCartService;
+import com.codecool.restaurant.user.UserService;
 import com.codecool.restaurant.order.UserOrderRepository;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,11 +1,16 @@
 package com.codecool.restaurant.order;
 
-import com.codecool.restaurant.User.UserApp;
-import org.hibernate.annotations.CreationTimestamp;
+import com.codecool.restaurant.user.User;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.util.Date;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "USER_ORDER")
 public class UserOrder {
@@ -16,48 +21,18 @@ public class UserOrder {
     private String status;
     private Double totalPrice;
 
-    @CreationTimestamp
-    private Timestamp date;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable=false, updatable=false)
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name="userApp_id")
-    private UserApp userApp;
+    private User user;
 
-    public UserOrder() {
-    }
-
-    public UserOrder(String status, Double totalPrice, UserApp userApp) {
+    public UserOrder(String status, Double totalPrice, User user) {
         this.status = status;
         this.totalPrice = totalPrice;
-        this.date = new Timestamp(System.currentTimeMillis());
-        this.userApp = userApp;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public Timestamp getDate() {
-        return date;
-    }
-
-    public void setDate(Timestamp date) {
-        this.date = date;
+        this.date = new Date();
+        this.user = user;
     }
 }

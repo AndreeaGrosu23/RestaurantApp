@@ -15,9 +15,12 @@ import java.util.List;
 @Service
 public class PaypalService {
 
-    @Autowired
     private APIContext apiContext;
 
+    //As of Spring 4.3, classes with a single constructor can omit the @Autowired annotation
+    public PaypalService(APIContext apiContext) {
+        this.apiContext = apiContext;
+    }
 
     public Payment createPayment(Double total, String description, String cancelUrl, String successUrl) throws PayPalRESTException {
         String currency = "USD";
@@ -50,14 +53,5 @@ public class PaypalService {
 
         return payment.create(apiContext);
     }
-
-
-//    public Payment getPaymentDetails(String paymentId, String payerId) throws PayPalRESTException {
-//        Payment payment = new Payment();
-//        payment.setId(paymentId);
-//        PaymentExecution paymentExecute = new PaymentExecution();
-//        paymentExecute.setPayerId(payerId);
-//        return payment.execute(apiContext, paymentExecute);
-//    }
 
 }

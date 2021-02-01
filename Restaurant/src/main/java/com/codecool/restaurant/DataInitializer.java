@@ -1,9 +1,9 @@
 package com.codecool.restaurant;
 
-import com.codecool.restaurant.ShoppingCart.ShoppingCart;
-import com.codecool.restaurant.ShoppingCart.ShoppingCartService;
-import com.codecool.restaurant.User.UserApp;
-import com.codecool.restaurant.User.UserRepository;
+import com.codecool.restaurant.shoppingCart.ShoppingCart;
+import com.codecool.restaurant.shoppingCart.ShoppingCartService;
+import com.codecool.restaurant.user.User;
+import com.codecool.restaurant.user.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -26,10 +26,8 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-
-        UserApp user = new UserApp("admin", "admin", "admin", "andmim@gmail.com", "", "", passwordEncoder.encode("admin"));
+        User user = new User("admin", "admin", "admin", "andmim@gmail.com", "", "", passwordEncoder.encode("admin"));
         userRepository.save(user);
         shoppingCartService.addCart(new ShoppingCart(user));
-
     }
 }
